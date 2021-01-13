@@ -8,15 +8,15 @@ steps:
     plugins:
       artifacts#v1.3.0:
         download: ["features/fixtures/ios-swift-cocoapods/output/iOSTestApp.ipa"]
-      docker-compose#v3.3.0:
+      docker-compose#v3.7.0:
         run: cocoa-maze-runner
         command:
-          - "--app=/app/build/iOSTestApp.ipa"
-          - "--farm=bs"
-          - "--device=IOS_13"
-          - "--resilient"
-          - "--appium-version=1.17.0"
-          - "--fail-fast"
+          - --app=/app/build/iOSTestApp.ipa
+          - --farm=bs
+          - --device=IOS_13
+          - --capabilities={"browserstack.video":"false"}
+          - --appium-version=1.17.0"
+          - --fail-fast
     concurrency: 9
     concurrency_group: browserstack-app
     retry:
@@ -33,15 +33,15 @@ steps:
     plugins:
       artifacts#v1.3.0:
         download: ["features/fixtures/ios-swift-cocoapods/output/iOSTestApp.ipa"]
-      docker-compose#v3.3.0:
+      docker-compose#v3.7.0:
         run: cocoa-maze-runner
         command:
-          - "--app=/app/build/iOSTestApp.ipa"
-          - "--farm=bs"
-          - "--device=IOS_12"
-          - "--resilient"
-          - "--appium-version=1.17.0"
-          - "--fail-fast"
+          - --app=/app/build/iOSTestApp.ipa
+          - --farm=bs
+          - --device=IOS_12
+          - --capabilities={"browserstack.video":"false"}
+          - --appium-version=1.17.0
+          - --fail-fast
     concurrency: 9
     concurrency_group: browserstack-app
     retry:
@@ -60,15 +60,15 @@ steps:
     plugins:
       artifacts#v1.3.0:
         download: ["features/fixtures/ios-swift-cocoapods/output/iOSTestApp.ipa"]
-      docker-compose#v3.3.0:
+      docker-compose#v3.7.0:
         run: cocoa-maze-runner
         command:
-          - "--app=/app/build/iOSTestApp.ipa"
-          - "--farm=bs"
-          - "--device=IOS_11_0_IPHONE_8_PLUS"
-          - "--resilient"
-          - "--appium-version=1.16.0"
-          - "--fail-fast"
+          - --app=/app/build/iOSTestApp.ipa
+          - --farm=bs
+          - --device=IOS_11_0_IPHONE_8_PLUS
+          - --capabilities={"browserstack.video":"false"}
+          - --appium-version=1.16.0
+          - --fail-fast
     concurrency: 9
     concurrency_group: browserstack-app
     retry:
