@@ -142,82 +142,82 @@ Feature: Barebone tests
     And the error payload field "events.0.device.model" matches the test device model
     And the error payload field "events.0.device.totalMemory" is an integer
 
-  @skip_macos
-  Scenario: Barebone test: Out Of Memory
-    When I run "OOMScenario"
-
-    And I wait to receive a session
-    Then the session is valid for the session reporting API
-    And I discard the oldest session
-
-    # Wait for app to be killed for using too much memory
-    And I wait for 5 seconds
-
-    And I relaunch the app
-    And I configure Bugsnag for "OOMScenario"
-    And I wait to receive a session
-
-    Then the session is valid for the session reporting API
-    And I discard the oldest session
-
-    And I wait to receive an error
-    Then the error is an OOM event
-    And the event "app.bundleVersion" is not null
-    And the event "app.dsymUUIDs" is not null
-    And the event "app.id" equals the platform-dependent string:
-      | ios   | com.bugsnag.iOSTestApp   |
-      | macos | com.bugsnag.macOSTestApp |
-    And the event "app.inForeground" is true
-    And the event "app.type" equals the platform-dependent string:
-      | ios   | iOS   |
-      | macos | macOS |
-    And the event "app.version" is not null
-    And the event "breadcrumbs.0.name" equals "Bugsnag loaded"
-    And the event "breadcrumbs.1.name" equals "Memory Warning"
-    And the event "device.id" is not null
-    And the event "device.jailbroken" is false
-    And the event "device.locale" is not null
-    And the event "device.manufacturer" equals "Apple"
-    And the event "device.modelNumber" equals the platform-dependent string:
-      | ios   | @not_null |
-      | macos | @null     |
-    And the event "device.osName" equals the platform-dependent string:
-      | ios   | iOS    |
-      | macos | Mac OS |
-    And the event "device.osVersion" matches "\d+\.\d+"
-    And the event "device.runtimeVersions.clangVersion" is not null
-    And the event "device.runtimeVersions.osBuild" is not null
-    And the event "device.time" is null
-    And the event "device.totalMemory" is not null
-    And the event "metaData.app.name" equals "iOSTestApp"
-    And the event "metaData.custom.bar" equals "foo"
-    And the event "metaData.device.batteryLevel" equals the platform-dependent string:
-      | ios   | @not_null |
-      | macos | @null     |
-    And the event "metaData.device.charging" equals the platform-dependent string:
-      | ios   | @not_null |
-      | macos | @null     |
-    And the event "metaData.device.orientation" equals the platform-dependent string:
-      | ios   | @not_null |
-      | macos | @null     |
-    And the event "metaData.device.lowMemoryWarning" equals the platform-dependent string:
-      | ios   | @not_null |
-      | macos | @null     |
-    And the event "metaData.device.simulator" is false
-    And the event "metaData.device.timezone" is not null
-    And the event "metaData.device.wordSize" is not null
-    And the event "session.id" is not null
-    And the event "session.startedAt" is not null
-    And the event "session.events.handled" equals 0
-    And the event "session.events.unhandled" equals 1
-    And the event "unhandled" is true
-    And the event "user.email" equals "foobar@example.com"
-    And the event "user.id" equals "foobar"
-    And the event "user.name" equals "Foo Bar"
-    And the error payload field "events.0.app.dsymUUIDs" is a non-empty array
-    And the error payload field "events.0.app.duration" is null
-    And the error payload field "events.0.app.durationInForeground" is null
-    And the error payload field "events.0.device.freeDisk" is null
-    And the error payload field "events.0.device.freeMemory" is null
-    And the error payload field "events.0.device.model" matches the test device model
-    And the error payload field "events.0.device.totalMemory" is an integer
+#  @skip_macos
+#  Scenario: Barebone test: Out Of Memory
+#    When I run "OOMScenario"
+#
+#    And I wait to receive a session
+#    Then the session is valid for the session reporting API
+#    And I discard the oldest session
+#
+#    # Wait for app to be killed for using too much memory
+#    And I wait for 5 seconds
+#
+#    And I relaunch the app
+#    And I configure Bugsnag for "OOMScenario"
+#    And I wait to receive a session
+#
+#    Then the session is valid for the session reporting API
+#    And I discard the oldest session
+#
+#    And I wait to receive an error
+#    Then the error is an OOM event
+#    And the event "app.bundleVersion" is not null
+#    And the event "app.dsymUUIDs" is not null
+#    And the event "app.id" equals the platform-dependent string:
+#      | ios   | com.bugsnag.iOSTestApp   |
+#      | macos | com.bugsnag.macOSTestApp |
+#    And the event "app.inForeground" is true
+#    And the event "app.type" equals the platform-dependent string:
+#      | ios   | iOS   |
+#      | macos | macOS |
+#    And the event "app.version" is not null
+#    And the event "breadcrumbs.0.name" equals "Bugsnag loaded"
+#    And the event "breadcrumbs.1.name" equals "Memory Warning"
+#    And the event "device.id" is not null
+#    And the event "device.jailbroken" is false
+#    And the event "device.locale" is not null
+#    And the event "device.manufacturer" equals "Apple"
+#    And the event "device.modelNumber" equals the platform-dependent string:
+#      | ios   | @not_null |
+#      | macos | @null     |
+#    And the event "device.osName" equals the platform-dependent string:
+#      | ios   | iOS    |
+#      | macos | Mac OS |
+#    And the event "device.osVersion" matches "\d+\.\d+"
+#    And the event "device.runtimeVersions.clangVersion" is not null
+#    And the event "device.runtimeVersions.osBuild" is not null
+#    And the event "device.time" is null
+#    And the event "device.totalMemory" is not null
+#    And the event "metaData.app.name" equals "iOSTestApp"
+#    And the event "metaData.custom.bar" equals "foo"
+#    And the event "metaData.device.batteryLevel" equals the platform-dependent string:
+#      | ios   | @not_null |
+#      | macos | @null     |
+#    And the event "metaData.device.charging" equals the platform-dependent string:
+#      | ios   | @not_null |
+#      | macos | @null     |
+#    And the event "metaData.device.orientation" equals the platform-dependent string:
+#      | ios   | @not_null |
+#      | macos | @null     |
+#    And the event "metaData.device.lowMemoryWarning" equals the platform-dependent string:
+#      | ios   | @not_null |
+#      | macos | @null     |
+#    And the event "metaData.device.simulator" is false
+#    And the event "metaData.device.timezone" is not null
+#    And the event "metaData.device.wordSize" is not null
+#    And the event "session.id" is not null
+#    And the event "session.startedAt" is not null
+#    And the event "session.events.handled" equals 0
+#    And the event "session.events.unhandled" equals 1
+#    And the event "unhandled" is true
+#    And the event "user.email" equals "foobar@example.com"
+#    And the event "user.id" equals "foobar"
+#    And the event "user.name" equals "Foo Bar"
+#    And the error payload field "events.0.app.dsymUUIDs" is a non-empty array
+#    And the error payload field "events.0.app.duration" is null
+#    And the error payload field "events.0.app.durationInForeground" is null
+#    And the error payload field "events.0.device.freeDisk" is null
+#    And the error payload field "events.0.device.freeMemory" is null
+#    And the error payload field "events.0.device.model" matches the test device model
+#    And the error payload field "events.0.device.totalMemory" is an integer
