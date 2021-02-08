@@ -199,9 +199,7 @@ steps:
           - "--app=/app/build/iOSTestApp.ipa"
           - "--farm=bs"
           - "--device=IOS_10"
-          - "--resilient"
-          - "--appium-version=1.15.0"
-          - "--fail-fast"
+          - "--appium-version=1.7.0"
     concurrency: 9
     concurrency_group: browserstack-app
     retry:
