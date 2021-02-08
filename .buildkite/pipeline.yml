@@ -11,7 +11,7 @@ steps:
       - ./features/scripts/export_ios_app.sh
       - ./features/scripts/export_mac_app.sh
 
-  - label: ':ios: iOS 11 end-to-end tests 1'
+  - label: ':ios: iOS 11 end-to-end tests - IOS_11_0_IPHONE_8_PLUS'
     depends_on:
       - cocoa_fixture
     timeout_in_minutes: 120
@@ -26,9 +26,7 @@ steps:
           - "--app=/app/build/iOSTestApp.ipa"
           - "--farm=bs"
           - "--device=IOS_11_0_IPHONE_8_PLUS"
-          - "--resilient"
-          - "--appium-version=1.16.0"
-          - "--fail-fast"
+          - "--appium-version=1.7.0"
     concurrency: 9
     concurrency_group: browserstack-app
     retry:
@@ -36,7 +34,7 @@ steps:
         - exit_status: -1  # Agent was lost
           limit: 2
 
-  - label: ':ios: iOS 11 end-to-end tests 2'
+  - label: ':ios: iOS 11 end-to-end tests - IOS_11_0_IPHONE_X'
     depends_on:
       - cocoa_fixture
     timeout_in_minutes: 120
@@ -51,9 +49,7 @@ steps:
           - "--app=/app/build/iOSTestApp.ipa"
           - "--farm=bs"
           - "--device=IOS_11_0_IPHONE_X"
-          - "--resilient"
-          - "--appium-version=1.16.0"
-          - "--fail-fast"
+          - "--appium-version=1.7.0"
     concurrency: 9
     concurrency_group: browserstack-app
     retry:
@@ -61,7 +57,7 @@ steps:
         - exit_status: -1  # Agent was lost
           limit: 2
 
-  - label: ':ios: iOS 11 end-to-end tests 3'
+  - label: ':ios: iOS 11 end-to-end tests - IOS_11_0_IPHONE_SE'
     depends_on:
       - cocoa_fixture
     timeout_in_minutes: 120
@@ -76,9 +72,7 @@ steps:
           - "--app=/app/build/iOSTestApp.ipa"
           - "--farm=bs"
           - "--device=IOS_11_0_IPHONE_SE"
-          - "--resilient"
-          - "--appium-version=1.16.0"
-          - "--fail-fast"
+          - "--appium-version=1.7.0"
     concurrency: 9
     concurrency_group: browserstack-app
     retry:
@@ -86,7 +80,7 @@ steps:
         - exit_status: -1  # Agent was lost
           limit: 2
 
-  - label: ':ios: iOS 11 end-to-end tests 4'
+  - label: ':ios: iOS 11 end-to-end tests - IOS_11_0_IPHONE_6'
     depends_on:
       - cocoa_fixture
     timeout_in_minutes: 120
@@ -101,9 +95,7 @@ steps:
           - "--app=/app/build/iOSTestApp.ipa"
           - "--farm=bs"
           - "--device=IOS_11_0_IPHONE_6"
-          - "--resilient"
-          - "--appium-version=1.16.0"
-          - "--fail-fast"
+          - "--appium-version=1.7.0"
     concurrency: 9
     concurrency_group: browserstack-app
     retry:
@@ -111,7 +103,7 @@ steps:
         - exit_status: -1  # Agent was lost
           limit: 2
 
-  - label: ':ios: iOS 11 end-to-end tests 5'
+  - label: ':ios: iOS 11 end-to-end tests - IOS_11_0_IPHONE_6S'
     depends_on:
       - cocoa_fixture
     timeout_in_minutes: 120
@@ -126,9 +118,7 @@ steps:
           - "--app=/app/build/iOSTestApp.ipa"
           - "--farm=bs"
           - "--device=IOS_11_0_IPHONE_6S"
-          - "--resilient"
-          - "--appium-version=1.16.0"
-          - "--fail-fast"
+          - "--appium-version=1.7.0"
     concurrency: 9
     concurrency_group: browserstack-app
     retry:
@@ -136,7 +126,7 @@ steps:
         - exit_status: -1  # Agent was lost
           limit: 2
 
-  - label: ':ios: iOS 11 end-to-end tests 6'
+  - label: ':ios: iOS 11 end-to-end tests - IOS_11_0_IPHONE_6S_PLUS'
     depends_on:
       - cocoa_fixture
     timeout_in_minutes: 120
@@ -151,9 +141,7 @@ steps:
           - "--app=/app/build/iOSTestApp.ipa"
           - "--farm=bs"
           - "--device=IOS_11_0_IPHONE_6S_PLUS"
-          - "--resilient"
-          - "--appium-version=1.16.0"
-          - "--fail-fast"
+          - "--appium-version=1.7.0"
     concurrency: 9
     concurrency_group: browserstack-app
     retry:
@@ -161,7 +149,7 @@ steps:
         - exit_status: -1  # Agent was lost
           limit: 2
 
-  - label: ':ios: iOS 11 end-to-end tests 7'
+  - label: ':ios: iOS 11 end-to-end tests - IOS_11_0_IPAD_5TH'
     depends_on:
       - cocoa_fixture
     timeout_in_minutes: 120
@@ -176,9 +164,7 @@ steps:
           - "--app=/app/build/iOSTestApp.ipa"
           - "--farm=bs"
           - "--device=IOS_11_0_IPAD_5TH"
-          - "--resilient"
-          - "--appium-version=1.16.0"
-          - "--fail-fast"
+          - "--appium-version=1.7.0"
     concurrency: 9
     concurrency_group: browserstack-app
     retry:
@@ -186,7 +172,7 @@ steps:
         - exit_status: -1  # Agent was lost
           limit: 2
 
-  - label: ':ios: iOS 11 end-to-end tests 8'
+  - label: ':ios: iOS 11 end-to-end tests - IOS_11_0_IPAD_MINI_4'
     depends_on:
       - cocoa_fixture
     timeout_in_minutes: 120
@@ -201,9 +187,7 @@ steps:
           - "--app=/app/build/iOSTestApp.ipa"
           - "--farm=bs"
           - "--device=IOS_11_0_IPAD_MINI_4"
-          - "--resilient"
-          - "--appium-version=1.16.0"
-          - "--fail-fast"
+          - "--appium-version=1.7.0"
     concurrency: 9
     concurrency_group: browserstack-app
     retry:
@@ -211,7 +195,7 @@ steps:
         - exit_status: -1  # Agent was lost
           limit: 2
 
-  - label: ':ios: iOS 11 end-to-end tests 9'
+  - label: ':ios: iOS 11 end-to-end tests - IOS_11_0_IPAD_PRO_9_7_2016'
     depends_on:
       - cocoa_fixture
     timeout_in_minutes: 120
@@ -226,9 +210,7 @@ steps:
           - "--app=/app/build/iOSTestApp.ipa"
           - "--farm=bs"
           - "--device=IOS_11_0_IPAD_PRO_9_7_2016"
-          - "--resilient"
-          - "--appium-version=1.16.0"
-          - "--fail-fast"
+          - "--appium-version=1.7.0"
     concurrency: 9
     concurrency_group: browserstack-app
     retry:
@@ -236,7 +218,7 @@ steps:
         - exit_status: -1  # Agent was lost
           limit: 2
 
-  - label: ':ios: iOS 11 end-to-end tests 10'
+  - label: ':ios: iOS 11 end-to-end tests - IOS_11_0_IPAD_6TH'
     depends_on:
       - cocoa_fixture
     timeout_in_minutes: 120
@@ -251,9 +233,7 @@ steps:
           - "--app=/app/build/iOSTestApp.ipa"
           - "--farm=bs"
           - "--device=IOS_11_0_IPAD_6TH"
-          - "--resilient"
-          - "--appium-version=1.16.0"
-          - "--fail-fast"
+          - "--appium-version=1.7.0"
     concurrency: 9
     concurrency_group: browserstack-app
     retry:
@@ -261,7 +241,7 @@ steps:
         - exit_status: -1  # Agent was lost
           limit: 2
 
-  - label: ':ios: iOS 11 end-to-end tests 11'
+  - label: ':ios: iOS 11 end-to-end tests - IOS_11_0_IPAD_PRO_12_9'
     depends_on:
       - cocoa_fixture
     timeout_in_minutes: 120
@@ -276,9 +256,7 @@ steps:
           - "--app=/app/build/iOSTestApp.ipa"
           - "--farm=bs"
           - "--device=IOS_11_0_IPAD_PRO_12_9"
-          - "--resilient"
-          - "--appium-version=1.16.0"
-          - "--fail-fast"
+          - "--appium-version=1.7.0"
     concurrency: 9
     concurrency_group: browserstack-app
     retry:
