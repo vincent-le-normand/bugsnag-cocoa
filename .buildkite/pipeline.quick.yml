@@ -81,7 +81,7 @@ steps:
   - label: iOS 10 unit tests
     timeout_in_minutes: 10
     agents:
-      queue: opensource-mac-cocoa-10.15
+      queue: opensource-mac-stadium-10.15
     env:
       LANG: "en_GB.UTF-8"
       TEST_CONFIGURATION: "Debug"
@@ -148,7 +148,7 @@ steps:
   - label: tvOS 10 unit tests
     timeout_in_minutes: 10
     agents:
-      queue: opensource-mac-cocoa-10.15
+      queue: opensource-mac-stadium-10.15
     env:
       LANG: "en_GB.UTF-8"
       TEST_CONFIGURATION: "Debug"
@@ -165,7 +165,7 @@ steps:
       - cocoa_fixture
     timeout_in_minutes: 60
     agents:
-      queue: opensource-mac-cocoa-10.15
+      queue: opensource-mac-stadium-10.15
     plugins:
       artifacts#v1.3.0:
         download: ["features/fixtures/macos/output/macOSTestApp.zip"]
