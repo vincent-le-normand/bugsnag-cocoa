@@ -621,13 +621,14 @@ NSString *_lastOrientation = nil;
 }
 
 - (void)watchLifecycleEvents:(NSNotificationCenter *)center {
+#if ! defined (DISABLE_APP_KIT)
     NSString *foregroundName;
     NSString *backgroundName;
 
     #if BSG_PLATFORM_IOS || BSG_PLATFORM_TVOS
     foregroundName = UIApplicationWillEnterForegroundNotification;
     backgroundName = UIApplicationDidEnterBackgroundNotification;
-    #elif BSG_PLATFORM_OSX && ! defined (DISABLE_APP_KIT)
+    #elif BSG_PLATFORM_OSX
     foregroundName = NSApplicationWillBecomeActiveNotification;
     backgroundName = NSApplicationDidFinishLaunchingNotification;
     #endif
@@ -641,6 +642,7 @@ NSString *_lastOrientation = nil;
                selector:@selector(willEnterBackground:)
                    name:backgroundName
                  object:nil];
+#endif
 }
 
 - (void)willEnterForeground:(id)sender {
