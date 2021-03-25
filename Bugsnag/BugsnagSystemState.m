@@ -11,7 +11,9 @@
 #import "BugsnagSystemState.h"
 
 #if TARGET_OS_OSX
+#if ! defined (DISABLE_APP_KIT)
 #import <AppKit/AppKit.h>
+#endif
 #else
 #import "BSGUIKit.h"
 #endif
@@ -78,8 +80,10 @@ static NSMutableDictionary* initCurrentState(BugsnagKVStore *kvstore, BugsnagCon
     bool isInForeground = true;
     bool isActive = true;
 #if TARGET_OS_OSX
+#if ! defined (DISABLE_APP_KIT)
     // MacOS "active" serves the same purpose as "foreground" in iOS
     isInForeground = [NSApplication sharedApplication].active;
+#endif
 #else
     UIApplicationState appState = [BSG_KSSystemInfo currentAppState];
     isInForeground = [BSG_KSSystemInfo isInForeground:appState];
@@ -171,6 +175,7 @@ static NSDictionary *copyDictionary(NSDictionary *launchState) {
         __weak __typeof__(self) weakSelf = self;
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 #if TARGET_OS_OSX
+#if ! defined (DISABLE_APP_KIT)
         [center addObserverForName:NSApplicationWillTerminateNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
             __strong __typeof__(self) strongSelf = weakSelf;
             [strongSelf.kvStore setBoolean:YES forKey:SYSTEMSTATE_APP_WAS_TERMINATED];
@@ -187,6 +192,7 @@ static NSDictionary *copyDictionary(NSDictionary *launchState) {
             [strongSelf.kvStore setBoolean:NO forKey:SYSTEMSTATE_APP_IS_IN_FOREGROUND];
             [strongSelf setValue:@NO forAppKey:SYSTEMSTATE_APP_IS_IN_FOREGROUND];
         }];
+#endif
 #else
         [center addObserverForName:UIApplicationWillTerminateNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
             __strong __typeof__(self) strongSelf = weakSelf;

@@ -14,7 +14,7 @@
 
 #if TARGET_OS_IOS || TARGET_OS_TV
 #import "BSGUIKit.h"
-#else
+#elif ! defined (DISABLE_APP_KIT)
 #import <AppKit/AppKit.h>
 #endif
 
@@ -36,7 +36,7 @@ NSString * const BSGNotificationBreadcrumbsMessageAppWillTerminate = @"App Will 
     if ((self = [super init])) {
         _configuration = configuration;
         _notificationCenter = NSNotificationCenter.defaultCenter;
-#if TARGET_OS_OSX
+#if TARGET_OS_OSX && ! defined (DISABLE_APP_KIT)
         _workspaceNotificationCenter = NSWorkspace.sharedWorkspace.notificationCenter;
 #endif
         _breadcrumbSink = breadcrumbSink;
@@ -72,7 +72,7 @@ NSString * const BSGNotificationBreadcrumbsMessageAppWillTerminate = @"App Will 
             UITextViewTextDidEndEditingNotification : @"Stopped Editing Text",
             UIWindowDidBecomeHiddenNotification : @"Window Became Hidden",
             UIWindowDidBecomeVisibleNotification : @"Window Became Visible",
-#elif TARGET_OS_OSX
+#elif TARGET_OS_OSX && ! defined (DISABLE_APP_KIT)
             NSUndoManagerDidRedoChangeNotification : @"Redo Operation",
             NSUndoManagerDidUndoChangeNotification : @"Undo Operation",
             NSApplicationDidBecomeActiveNotification : @"App Became Active",
@@ -97,7 +97,7 @@ NSString * const BSGNotificationBreadcrumbsMessageAppWillTerminate = @"App Will 
     return self;
 }
 
-#if TARGET_OS_OSX
+#if TARGET_OS_OSX && ! defined (DISABLE_APP_KIT)
 - (NSArray<NSNotificationName> *)workspaceBreadcrumbStateEvents {
     return @[
         NSWorkspaceScreensDidSleepNotification,
@@ -133,7 +133,7 @@ NSString * const BSGNotificationBreadcrumbsMessageAppWillTerminate = @"App Will 
         UIWindowDidBecomeHiddenNotification,
         UIWindowDidBecomeVisibleNotification,
     ];
-#elif TARGET_OS_OSX
+#elif TARGET_OS_OSX && ! defined (DISABLE_APP_KIT)
     return @[
         NSApplicationDidBecomeActiveNotification,
         NSApplicationDidResignActiveNotification,
@@ -160,7 +160,7 @@ NSString * const BSGNotificationBreadcrumbsMessageAppWillTerminate = @"App Will 
         UITextViewTextDidBeginEditingNotification,
         UITextViewTextDidEndEditingNotification
     ];
-#elif TARGET_OS_OSX
+#elif TARGET_OS_OSX && ! defined (DISABLE_APP_KIT)
     return @[
         NSControlTextDidBeginEditingNotification,
         NSControlTextDidEndEditingNotification
@@ -171,13 +171,13 @@ NSString * const BSGNotificationBreadcrumbsMessageAppWillTerminate = @"App Will 
 - (NSArray<NSNotificationName> *)automaticBreadcrumbTableItemEvents {
 #if TARGET_OS_IOS || TARGET_OS_TV
     return @[ UITableViewSelectionDidChangeNotification ];
-#elif TARGET_OS_OSX
+#elif TARGET_OS_OSX && ! defined (DISABLE_APP_KIT)
     return @[ NSTableViewSelectionDidChangeNotification ];
 #endif
 }
 
 - (NSArray<NSNotificationName> *)automaticBreadcrumbMenuItemEvents {
-#if TARGET_OS_OSX
+#if TARGET_OS_OSX && ! defined (DISABLE_APP_KIT)
     return @[ NSMenuWillSendActionNotification ];
 #endif
     return nil;
@@ -211,7 +211,7 @@ NSString * const BSGNotificationBreadcrumbsMessageAppWillTerminate = @"App Will 
             [self startListeningForStateChangeNotification:name];
         }
         
-#if TARGET_OS_OSX
+#if TARGET_OS_OSX && ! defined (DISABLE_APP_KIT)
         // Workspace-specific events - macOS only
         for (NSNotificationName name in [self workspaceBreadcrumbStateEvents]) {
             [_workspaceNotificationCenter addObserver:self
@@ -266,7 +266,7 @@ NSString * const BSGNotificationBreadcrumbsMessageAppWillTerminate = @"App Will 
     NSIndexPath *indexPath = ((UITableView *)notification.object).indexPathForSelectedRow;
     [self addBreadcrumbWithType:BSGBreadcrumbTypeNavigation forNotificationName:notification.name metadata:
      indexPath ? @{@"row" : @(indexPath.row), @"section" : @(indexPath.section)} : nil];
-#elif TARGET_OS_OSX
+#elif TARGET_OS_OSX && ! defined (DISABLE_APP_KIT)
     NSTableView *tableView = notification.object;
     [self addBreadcrumbWithType:BSGBreadcrumbTypeNavigation forNotificationName:notification.name metadata:
      tableView ? @{@"selectedRow" : @(tableView.selectedRow), @"selectedColumn" : @(tableView.selectedColumn)} : nil];
@@ -274,7 +274,7 @@ NSString * const BSGNotificationBreadcrumbsMessageAppWillTerminate = @"App Will 
 }
 
 - (void)addBreadcrumbForMenuItemNotification:(NSNotification *)notification {
-#if TARGET_OS_OSX
+#if TARGET_OS_OSX && ! defined (DISABLE_APP_KIT)
     NSMenuItem *menuItem = [[notification userInfo] valueForKey:@"MenuItem"];
     [self addBreadcrumbWithType:BSGBreadcrumbTypeState forNotificationName:notification.name metadata:
      [menuItem isKindOfClass:[NSMenuItem class]] ? @{BSGKeyAction : menuItem.title} : nil];
@@ -286,7 +286,7 @@ NSString * const BSGNotificationBreadcrumbsMessageAppWillTerminate = @"App Will 
     NSString *label = ((UIControl *)notification.object).accessibilityLabel;
     [self addBreadcrumbWithType:BSGBreadcrumbTypeUser forNotificationName:notification.name metadata:
      label.length ? @{BSGKeyLabel : label} : nil];
-#elif TARGET_OS_OSX
+#elif TARGET_OS_OSX && ! defined (DISABLE_APP_KIT)
     NSControl *control = notification.object;
     NSDictionary *metadata = nil;
     if ([control respondsToSelector:@selector(accessibilityLabel)]) {

@@ -80,7 +80,7 @@
 
 #if BSG_PLATFORM_IOS
 #import "BSGUIKit.h"
-#elif BSG_PLATFORM_OSX
+#elif BSG_PLATFORM_OSX && ! defined (DISABLE_APP_KIT)
 #import <AppKit/AppKit.h>
 #endif
 
@@ -392,7 +392,7 @@ NSString *_lastOrientation = nil;
     [self batteryChanged:nil];
     [self addTerminationObserver:UIApplicationWillTerminateNotification];
 
-#elif BSG_PLATFORM_OSX
+#elif BSG_PLATFORM_OSX && ! defined (DISABLE_APP_KIT)
     [center addObserver:self
                selector:@selector(willEnterForeground:)
                    name:NSApplicationDidBecomeActiveNotification
@@ -627,7 +627,7 @@ NSString *_lastOrientation = nil;
     #if BSG_PLATFORM_IOS || BSG_PLATFORM_TVOS
     foregroundName = UIApplicationWillEnterForegroundNotification;
     backgroundName = UIApplicationDidEnterBackgroundNotification;
-    #elif BSG_PLATFORM_OSX
+    #elif BSG_PLATFORM_OSX && ! defined (DISABLE_APP_KIT)
     foregroundName = NSApplicationWillBecomeActiveNotification;
     backgroundName = NSApplicationDidFinishLaunchingNotification;
     #endif

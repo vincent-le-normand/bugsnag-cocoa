@@ -35,6 +35,7 @@ let package = Package(
                 .headerSearchPath("Payload"),
                 .headerSearchPath("Plugins"),
                 .headerSearchPath("Storage"),
+				.define("DISABLE_APP_KIT"),
             ],
             linkerSettings: [
                 .linkedLibrary("z"),

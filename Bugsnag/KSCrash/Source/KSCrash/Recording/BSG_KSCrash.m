@@ -46,7 +46,7 @@
 #if BSG_HAS_UIKIT
 #import "BSGUIKit.h"
 #endif
-#if TARGET_OS_OSX
+#if TARGET_OS_OSX  && ! defined (DISABLE_APP_KIT)
 #import <AppKit/AppKit.h>
 #endif
 
@@ -226,7 +226,7 @@
                 selector:@selector(applicationWillTerminate)
                     name:UIApplicationWillTerminateNotification
                   object:nil];
-#elif TARGET_OS_OSX
+#elif TARGET_OS_OSX  && ! defined (DISABLE_APP_KIT)
     // MacOS "active" serves the same purpose as "foreground" in iOS
     [nCenter addObserver:self
                 selector:@selector(applicationDidEnterBackground)
